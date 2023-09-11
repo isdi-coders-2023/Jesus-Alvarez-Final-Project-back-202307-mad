@@ -4,7 +4,7 @@ import { createServer } from 'http';
 import { app } from './app.js';
 import { dbConnect } from './dbConnect/dbConnect.js';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ?? 3000;
 const debug = createDebug('PF11:Index');
 const server = createServer(app);
 
