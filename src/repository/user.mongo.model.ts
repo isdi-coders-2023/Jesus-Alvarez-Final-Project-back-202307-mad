@@ -29,9 +29,11 @@ const userSchema = new Schema<User>({
       url: { type: String },
     },
   },
-  reviews: {
-    type: [],
-  },
+  reviews: [
+    {
+      type: String,
+    },
+  ],
   role: {
     type: String,
   },

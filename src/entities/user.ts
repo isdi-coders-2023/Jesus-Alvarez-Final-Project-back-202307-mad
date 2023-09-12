@@ -9,7 +9,7 @@ export type UserNoId = UserLoginData & {
   firstName: string;
   lastName: string;
   avatar: ImageData;
-  reviews: [];
+  reviews: string[];
   role: string;
 };
 
