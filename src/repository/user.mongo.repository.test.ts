@@ -88,5 +88,15 @@ describe('Given the class UserMongoRepository', () => {
       });
       expect(repo.delete('')).rejects.toThrow();
     });
+    test('Then, when the method search() is called', async () => {
+      const mockExec = jest.fn().mockResolvedValueOnce([{}]);
+      UserModel.find = jest.fn().mockReturnValueOnce({
+        exec: mockExec,
+      });
+      const key = 'userName';
+      const value = 'Kubo';
+      await repo.search({ key, value });
+      expect(mockExec).toHaveBeenCalled();
+    });
   });
 });

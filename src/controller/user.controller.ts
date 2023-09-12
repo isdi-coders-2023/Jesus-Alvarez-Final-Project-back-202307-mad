@@ -32,7 +32,7 @@ export class UserController extends Controller<User> {
 
       const payload: TokenPayload = {
         id: user.id,
-        firstName: user.firstName,
+        email: user.email,
       };
 
       const token = Auth.signJWT(payload);

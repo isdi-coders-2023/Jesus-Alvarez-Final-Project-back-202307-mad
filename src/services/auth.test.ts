@@ -17,7 +17,7 @@ describe('Given the class Auth', () => {
     });
     test('When the signJWT is called', () => {
       jwt.sign = jest.fn();
-      const payload = { id: '', userName: '' };
+      const payload = { id: '', email: '' };
       Auth.signJWT(payload);
       expect(jwt.sign).toHaveBeenCalled();
     });
