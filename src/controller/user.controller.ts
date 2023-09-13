@@ -1,11 +1,11 @@
 import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { User, UserLoginData } from '../entities/user';
-import { Repository } from '../repository/repository';
-import { Auth } from '../services/auth';
-import { HttpError } from '../types/http.error';
-import { TokenPayload } from '../types/token';
-import { Controller } from './controller';
+import { Repository } from '../repository/repository.js';
+import { Auth } from '../services/auth.js';
+import { HttpError } from '../types/http.error.js';
+import { TokenPayload } from '../types/token.js';
+import { Controller } from './controller.js';
 
 const debug = createDebug('PF11:Controller: UserController');
 

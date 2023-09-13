@@ -6,19 +6,26 @@ const userSchema = new Schema<User>({
     type: String,
     required: true,
     unique: true,
+    minlength: 10,
+    maxlength: 40,
   },
   password: {
     type: String,
     required: true,
     unique: true,
+    minlength: 8,
   },
   firstName: {
     type: String,
     required: true,
+    minlength: 2,
+    maxlength: 20,
   },
   lastName: {
     type: String,
     required: true,
+    minlength: 2,
+    maxlength: 20,
   },
   avatar: {
     type: {
@@ -36,6 +43,8 @@ const userSchema = new Schema<User>({
   ],
   role: {
     type: String,
+    default: 'user',
+    enum: ['user', 'admin'],
   },
 });
 

@@ -11,3 +11,7 @@ export const userRouter = createRouter();
 
 userRouter.patch('/login', userController.login.bind(userController));
 userRouter.post('/register', userController.create.bind(userController));
+
+userRouter.get('/', userController.getAll.bind(userController));
+userRouter.get('/:id', userController.getById.bind(userController));
+userRouter.delete('/:id', userController.delete.bind(userController));

@@ -10,7 +10,7 @@ export type UserNoId = UserLoginData & {
   lastName: string;
   avatar: ImageData;
   reviews: string[];
-  role: string;
+  role: 'user' | 'admin';
 };
 
 export type UserWithId = {
