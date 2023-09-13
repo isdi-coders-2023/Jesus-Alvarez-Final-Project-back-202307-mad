@@ -26,7 +26,7 @@ describe('Given the class CloudinaryService', () => {
         url: '',
       } as unknown as ImageData;
       const imdData = await cloudinary.uploadImage('');
-      await cloudinary.resizeImage(newPic);
+      cloudinary.resizeImage(newPic);
       expect(cloudinaryBase.v2.url).toHaveBeenCalled();
       expect(imdData).toHaveProperty('id', 'Test image');
     });
