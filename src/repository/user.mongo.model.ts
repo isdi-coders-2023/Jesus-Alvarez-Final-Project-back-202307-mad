@@ -27,7 +27,7 @@ const userSchema = new Schema<User>({
     minlength: 2,
     maxlength: 20,
   },
-  avatar: {
+  imageData: {
     type: {
       id: { type: String },
       width: { type: Number },

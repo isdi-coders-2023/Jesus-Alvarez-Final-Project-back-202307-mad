@@ -24,6 +24,16 @@ export abstract class Controller<T extends { id: string | number }> {
     }
   }
 
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const finalItem = await this.repo.create(req.body);
+      res.status(201);
+      res.json(finalItem);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
       await this.repo.delete(req.params.id);

@@ -1,3 +1,4 @@
+import joi from 'joi';
 import { ImageData } from '../types/image.js';
 
 export type UserLoginData = {
@@ -8,7 +9,7 @@ export type UserLoginData = {
 export type UserNoId = UserLoginData & {
   firstName: string;
   lastName: string;
-  avatar: ImageData;
+  imageData: ImageData;
   reviews: string[];
   role: 'user' | 'admin';
 };
@@ -18,3 +19,14 @@ export type UserWithId = {
 };
 
 export type User = UserNoId & UserWithId;
+
+export const userSchema = joi.object<User>({
+  email: joi.string().email().required().messages({
+    'string.email': `Se necesita un correo válido`,
+    'string.empty': `Se necesita un correo válido`,
+  }),
+  password: joi
+    .string()
+    .pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+    .required(),
+});

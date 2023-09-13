@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { User, UserLoginData } from '../entities/user';
 import { Repository } from '../repository/repository.js';
 import { Auth } from '../services/auth.js';
+import { CloudinaryService } from '../services/media.files.js';
 import { HttpError } from '../types/http.error.js';
 import { TokenPayload } from '../types/token.js';
 import { Controller } from './controller.js';
@@ -10,8 +11,10 @@ import { Controller } from './controller.js';
 const debug = createDebug('PF11:Controller: UserController');
 
 export class UserController extends Controller<User> {
+  cloudinary: CloudinaryService;
   constructor(protected repo: Repository<User>) {
     super(repo);
+    this.cloudinary = new CloudinaryService();
     debug('Instantiated');
   }
 
@@ -45,11 +48,24 @@ export class UserController extends Controller<User> {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       req.body.password = await Auth.hashPassword(req.body.password);
-      const newUser = await this.repo.create(req.body);
-      res.status(201);
-      res.json(newUser);
+      if (!req.file) {
+        throw new HttpError(
+          400,
+          'Bad Request',
+          'No avatar image for registration'
+        );
+      }
+
+      console.log(req.body, 'medio');
+      const finalPath = req.file.destination + '/' + req.file!.filename;
+      const imageData = await this.cloudinary.uploadImage(finalPath);
+      req.body.imageData = imageData;
+      console.log(req.body, 'despues');
+      debug(imageData);
     } catch (error) {
       next(error);
     }
+
+    super.create(req, res, next);
   }
 }
