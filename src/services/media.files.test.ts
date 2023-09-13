@@ -1,4 +1,5 @@
 import cloudinaryBase from 'cloudinary';
+import { ImageData } from '../types/image.js';
 import { CloudinaryService } from './media.files';
 
 jest.mock('cloudinary');
@@ -18,7 +19,15 @@ describe('Given the class CloudinaryService', () => {
         .mockResolvedValue({ public_id: 'Test image' });
     });
     test('Then, when we use the method uploadImage', async () => {
+      cloudinaryBase.v2.url = jest.fn();
+      const newPic: ImageData = {
+        id: '1',
+        format: '',
+        url: '',
+      } as unknown as ImageData;
       const imdData = await cloudinary.uploadImage('');
+      await cloudinary.resizeImage(newPic);
+      expect(cloudinaryBase.v2.url).toHaveBeenCalled();
       expect(imdData).toHaveProperty('id', 'Test image');
     });
   });
