@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { UserMongoRepository } from '../repository/user.mongo.repository';
 import { Auth } from '../services/auth';
+import { CloudinaryService } from '../services/media.files';
 import { UserController } from './user.controller';
 
 describe('Given the class UserController', () => {
@@ -28,7 +29,9 @@ describe('Given the class UserController', () => {
       const mockResponse = {
         json: jest.fn(),
       } as unknown as Response;
+
       const mockNext = jest.fn();
+
       (mockRepo.search as jest.Mock).mockResolvedValueOnce([mockUser]);
 
       Auth.comparePasswords = jest.fn().mockReturnValueOnce(true);
@@ -109,16 +112,25 @@ describe('Given the class UserController', () => {
 
       Auth.hashPassword = jest.fn();
       (mockRepo.create as jest.Mock).mockReturnValueOnce(mockUser);
+
       const mockRequest = {
         params: '1',
         body: {
           password: '12345',
+          imageData: '',
         },
+        file: { filename: '', destination: '' },
       } as unknown as Request;
+
+      CloudinaryService.prototype.uploadImage = jest
+        .fn()
+        .mockResolvedValue(mockRequest.body.imageData);
+
       const mockResponse = {
         json: jest.fn(),
         status: jest.fn(),
       } as unknown as Response;
+
       const mockNext = jest.fn();
       await userController.create(mockRequest, mockResponse, mockNext);
       expect(mockRepo.create).toHaveBeenCalled();

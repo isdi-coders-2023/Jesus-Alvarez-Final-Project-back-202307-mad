@@ -56,12 +56,9 @@ export class UserController extends Controller<User> {
         );
       }
 
-      console.log(req.body, 'medio');
       const finalPath = req.file.destination + '/' + req.file!.filename;
       const imageData = await this.cloudinary.uploadImage(finalPath);
       req.body.imageData = imageData;
-      console.log(req.body, 'despues');
-      debug(imageData);
     } catch (error) {
       next(error);
     }

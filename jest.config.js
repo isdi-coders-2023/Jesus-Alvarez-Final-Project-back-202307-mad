@@ -10,5 +10,6 @@ export default {
     'app.ts',
     'user.mongo.model.ts',
     'user.router.ts',
+    'user.ts',
   ],
 };
