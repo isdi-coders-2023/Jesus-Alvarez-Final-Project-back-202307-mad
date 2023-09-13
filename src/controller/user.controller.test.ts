@@ -249,3 +249,38 @@ describe('Given the class UserController', () => {
     });
   });
 });
+
+describe('Given the method login()', () => {
+  const mockRepo: UserMongoRepository = {
+    getAll: jest.fn(),
+    getById: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
+    search: jest.fn().mockRejectedValueOnce(new Error('Search Error')),
+  };
+
+  const userController = new UserController(mockRepo);
+  describe('When we use it', () => {
+    test('Then when we use login()', async () => {
+      const mockUser = {
+        email: '',
+        password: '',
+      };
+      const mockRequest = {
+        params: { id: '1' },
+        body: mockUser,
+      } as unknown as Request;
+      const mockResponse = {
+        json: jest.fn(),
+      } as unknown as Response;
+      const mockNext = jest.fn();
+      (mockRepo.search as jest.Mock).mockResolvedValueOnce([mockUser]);
+
+      Auth.comparePasswords = jest.fn().mockReturnValueOnce(true);
+      Auth.signJWT = jest.fn().mockReturnValueOnce('');
+      await userController.login(mockRequest, mockResponse, mockNext);
+      expect(mockRepo.search).toHaveBeenCalled();
+    });
+  });
+});
