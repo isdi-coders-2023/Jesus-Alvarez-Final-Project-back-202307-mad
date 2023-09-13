@@ -50,4 +50,15 @@ export class UserMongoRepository implements Repository<User> {
         cause: 'Fail to delete',
       });
   }
+
+  async search({
+    key,
+    value,
+  }: {
+    key: string;
+    value: string;
+  }): Promise<User[]> {
+    const data = await UserModel.find({ [key]: value }).exec();
+    return data;
+  }
 }

@@ -1,3 +1,4 @@
+import { User } from '../entities/user';
 import { UserModel } from './user.mongo.model';
 import { UserMongoRepository } from './user.mongo.repository';
 
@@ -50,8 +51,7 @@ describe('Given the class UserMongoRepository', () => {
           url: '',
         },
         reviews: ['o'],
-        role: '',
-      };
+      } as unknown as User;
       UserModel.create = jest.fn().mockReturnValueOnce(mockUser);
       const newUser = await repo.create(mockUser);
 
@@ -87,6 +87,16 @@ describe('Given the class UserMongoRepository', () => {
         exec: execMock,
       });
       expect(repo.delete('')).rejects.toThrow();
+    });
+    test('Then, when the method search() is called', async () => {
+      const mockExec = jest.fn().mockResolvedValueOnce([{}]);
+      UserModel.find = jest.fn().mockReturnValueOnce({
+        exec: mockExec,
+      });
+      const key = 'userName';
+      const value = 'Kubo';
+      await repo.search({ key, value });
+      expect(mockExec).toHaveBeenCalled();
     });
   });
 });
