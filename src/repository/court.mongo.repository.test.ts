@@ -5,7 +5,7 @@ import { CourtMongoRepository } from './court.mongo.repository';
 
 jest.mock('./court.mongo.model');
 
-describe('Given the class UserMongoRepository', () => {
+describe('Given the class CourtMongoRepository', () => {
   let repo: CourtMongoRepository;
 
   beforeEach(() => {
