@@ -1,8 +1,8 @@
 import createDebug from 'debug';
-import { Court } from '../entities/court';
-import { HttpError } from '../types/http.error';
-import { CourtModel } from './court.mongo.model';
-import { Repository } from './repository';
+import { Court } from '../entities/court.js';
+import { HttpError } from '../types/http.error.js';
+import { CourtModel } from './court.mongo.model.js';
+import { Repository } from './repository.js';
 
 const debug = createDebug('PF11:RepoCourtMongoRepository');
 
