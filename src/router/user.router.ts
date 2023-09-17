@@ -17,8 +17,6 @@ userRouter.post(
   files.singleFileStore('imageData').bind(files.singleFileStore),
   userController.create.bind(userController),
   (req, res, _Next) => {
-    debug('final', req.body);
-    debug(req.file);
     res.json(req.body);
   }
 );

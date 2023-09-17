@@ -5,7 +5,7 @@ import { Review } from '../entities/review';
 import { HttpError } from '../types/http.error';
 import { ReviewModel } from './review.mongo.model';
 
-const debug = createDebug('PF11:RepoUserMongoRepository');
+const debug = createDebug('PF11:RepoReviewMongoRepository');
 
 export class ReviewMongoRepository implements Repository<Review> {
   constructor() {

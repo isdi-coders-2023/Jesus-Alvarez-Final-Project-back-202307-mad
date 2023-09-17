@@ -14,5 +14,6 @@ export default {
     'court.mongo.model.ts',
     'court.router.ts',
     'review.mongo.model.ts',
+    'review.router.ts',
   ],
 };
