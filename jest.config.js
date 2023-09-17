@@ -13,5 +13,6 @@ export default {
     'user.ts',
     'court.mongo.model.ts',
     'court.router.ts',
+    'review.mongo.model.ts',
   ],
 };
