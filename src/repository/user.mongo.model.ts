@@ -38,7 +38,8 @@ const userSchema = new Schema<User>({
   },
   reviews: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'Review',
     },
   ],
   role: {

@@ -1,5 +1,6 @@
 import joi from 'joi';
 import { ImageData } from '../types/image.js';
+import { Review } from './review.js';
 
 export type UserLoginData = {
   email: string;
@@ -10,7 +11,7 @@ export type UserNoId = UserLoginData & {
   firstName: string;
   lastName: string;
   imageData: ImageData;
-  reviews: string[];
+  reviews: Review[];
   role: 'user' | 'admin';
 };
 

@@ -21,7 +21,8 @@ const courtSchema = new Schema<Court>({
   },
   reviews: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'Review',
     },
   ],
 });
