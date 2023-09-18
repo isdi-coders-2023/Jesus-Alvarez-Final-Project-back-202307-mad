@@ -2,6 +2,7 @@ import { ImageData } from '../types/image';
 import { Review } from './review';
 
 export type CourtNoId = {
+  name: String;
   surface: string;
   location: string;
   pictures: ImageData;

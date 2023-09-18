@@ -1,9 +1,8 @@
 import createDebug from 'debug';
-import { Repository } from './repository';
-
-import { Review } from '../entities/review';
-import { HttpError } from '../types/http.error';
-import { ReviewModel } from './review.mongo.model';
+import { Review } from '../entities/review.js';
+import { HttpError } from '../types/http.error.js';
+import { Repository } from './repository.js';
+import { ReviewModel } from './review.mongo.model.js';
 
 const debug = createDebug('PF11:RepoReviewMongoRepository');
 
@@ -32,7 +31,9 @@ export class ReviewMongoRepository implements Repository<Review> {
   }
 
   async create(newData: Omit<Review, 'id'>): Promise<Review> {
+    debug('REPOSITORIO', newData);
     const newReview = await ReviewModel.create(newData);
+    debug('NEWREVIEW', newReview);
     return newReview;
   }
 

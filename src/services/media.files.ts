@@ -26,7 +26,6 @@ export class CloudinaryService {
 
     try {
       const result = await this.cloudinary.uploader.upload(imagePath, options);
-      debug('Hola', result);
       const imageData: ImageData = {
         id: result.public_id,
         width: result.width,

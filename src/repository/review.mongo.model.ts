@@ -5,16 +5,12 @@ const reviewSchema = new Schema<Review>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
-    unique: true,
-    maxlength: 1,
+    unique: false,
   },
   courtId: {
     type: Schema.Types.ObjectId,
     ref: 'Court',
-    required: true,
-    unique: true,
-    maxlength: 1,
+    unique: false,
   },
   description: {
     type: String,
@@ -24,6 +20,7 @@ const reviewSchema = new Schema<Review>({
   },
   date: {
     type: Date,
+    default: Date.now,
   },
   image: {
     type: {
