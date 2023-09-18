@@ -31,9 +31,8 @@ export class ReviewMongoRepository implements Repository<Review> {
   }
 
   async create(newData: Omit<Review, 'id'>): Promise<Review> {
-    debug('REPOSITORIO', newData);
     const newReview = await ReviewModel.create(newData);
-    debug('NEWREVIEW', newReview);
+
     return newReview;
   }
 

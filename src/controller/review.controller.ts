@@ -36,10 +36,8 @@ export class ReviewController extends Controller<Review> {
       const image = await this.cloudinary.uploadImage(finalPath);
       req.body.image = image;
 
-      console.log(req.body);
       const finalReview = await this.repo.create(req.body);
 
-      debug('FINAL', finalReview);
       user.reviews.push(finalReview);
       court.reviews.push(finalReview);
 
@@ -47,6 +45,40 @@ export class ReviewController extends Controller<Review> {
       courtRepo.update(court.id, court);
       res.status(201);
       res.json(finalReview);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      const review = await this.repo.getById(req.params.id);
+
+      const userid = String(review.userId);
+      const userRepo = new UserMongoRepository();
+      const user = await userRepo.getById(userid);
+      const newUserArray = user.reviews.filter(
+        (review) => String(review) !== req.params.id
+      );
+      user.reviews = newUserArray;
+
+      const courtid = String(review.courtId);
+      const courtRepo = new CourtMongoRepository();
+
+      const court = await courtRepo.getById(courtid);
+
+      const newCourtArray = court.reviews.filter(
+        (review) => String(review) !== req.params.id
+      );
+
+      court.reviews = newCourtArray;
+
+      await this.repo.delete(req.params.id);
+
+      userRepo.update(user.id, user);
+      courtRepo.update(court.id, court);
+      res.status(204);
+      res.json({});
     } catch (error) {
       next(error);
     }

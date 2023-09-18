@@ -43,6 +43,7 @@ export class UserMongoRepository implements Repository<User> {
   }
 
   async delete(id: string): Promise<void> {
+    debug(id);
     const deletedUser = await UserModel.findByIdAndDelete(id).exec();
 
     if (!deletedUser)

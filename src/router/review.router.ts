@@ -23,3 +23,4 @@ reviewRouter.post(
 reviewRouter.get('/', reviewController.getAll.bind(reviewController));
 reviewRouter.get('/:id', reviewController.getById.bind(reviewController));
 reviewRouter.delete('/:id', reviewController.delete.bind(reviewController));
+reviewRouter.patch('/:id', reviewController.update.bind(reviewController));
