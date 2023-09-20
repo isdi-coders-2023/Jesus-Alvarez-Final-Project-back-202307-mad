@@ -1,11 +1,11 @@
 import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { Review } from '../entities/review.js';
-import { CourtMongoRepository } from '../repository/court.mongo.repository.js';
+import { CourtMongoRepository } from '../repository/court-mongo-repository.js';
 import { Repository } from '../repository/repository.js';
-import { UserMongoRepository } from '../repository/user.mongo.repository.js';
-import { CloudinaryService } from '../services/media.files.js';
-import { HttpError } from '../types/http.error.js';
+import { UserMongoRepository } from '../repository/user-mongo-repository.js';
+import { CloudinaryService } from '../services/media-files.js';
+import { HttpError } from '../types/http-error.js';
 import { Controller } from './controller.js';
 
 const debug = createDebug('PF11:Controller: ReviewController');

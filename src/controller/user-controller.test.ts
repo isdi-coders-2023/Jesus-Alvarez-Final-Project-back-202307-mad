@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { UserMongoRepository } from '../repository/user.mongo.repository';
+import { UserMongoRepository } from '../repository/user-mongo-repository';
 import { Auth } from '../services/auth';
-import { CloudinaryService } from '../services/media.files';
-import { UserController } from './user.controller';
+import { CloudinaryService } from '../services/media-files';
+import { UserController } from './user-controller';
 
 describe('Given the class UserController', () => {
   describe('When it is instantiated', () => {

@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { Review } from '../entities/review.js';
-import { HttpError } from '../types/http.error.js';
+import { HttpError } from '../types/http-error.js';
 import { Repository } from './repository.js';
-import { ReviewModel } from './review.mongo.model.js';
+import { ReviewModel } from './review-mongo-model.js';
 
 const debug = createDebug('PF11:RepoReviewMongoRepository');
 

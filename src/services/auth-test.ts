@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { HttpError } from '../types/http.error.js';
+import { HttpError } from '../types/http-error.js';
 import { Auth } from './auth.js';
 
 describe('Given the class Auth', () => {

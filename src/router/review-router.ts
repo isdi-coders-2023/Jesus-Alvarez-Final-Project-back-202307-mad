@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { Router as createRouter } from 'express';
-import { ReviewController } from '../controller/review.controller.js';
-import { FilesInterceptor } from '../middleware/files.interceptor.js';
-import { ReviewMongoRepository } from '../repository/review.mongo.repository.js';
+import { ReviewController } from '../controller/review-controller.js';
+import { FilesInterceptor } from '../middleware/files-interceptor.js';
+import { ReviewMongoRepository } from '../repository/review-mongo-repository.js';
 const debug = createDebug('PF11:Router: ReviewRouter');
 debug('Loaded');
 

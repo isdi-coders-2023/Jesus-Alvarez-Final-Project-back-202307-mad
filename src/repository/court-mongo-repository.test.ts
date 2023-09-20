@@ -1,20 +1,21 @@
-import { Review } from '../entities/review';
-import { ReviewModel } from './review.mongo.model';
-import { ReviewMongoRepository } from './review.mongo.repository';
+import { Court } from '../entities/court';
 
-jest.mock('./review.mongo.model');
+import { CourtMongoRepository } from './court-mongo-repository';
+import { CourtModel } from './court-mongo.model';
 
-describe('Given the class ReviewMongoRepository', () => {
-  let repo: ReviewMongoRepository;
+jest.mock('./court.mongo.model');
+
+describe('Given the class CourtMongoRepository', () => {
+  let repo: CourtMongoRepository;
 
   beforeEach(() => {
-    repo = new ReviewMongoRepository();
+    repo = new CourtMongoRepository();
   });
 
   describe('When it is instantiated and its methods are called', () => {
     test('Then, in getAll()', async () => {
       const mockExec = jest.fn().mockResolvedValueOnce([]);
-      ReviewModel.find = jest.fn().mockReturnValueOnce({
+      CourtModel.find = jest.fn().mockReturnValueOnce({
         exec: mockExec,
       });
       const result = await repo.getAll();
@@ -23,7 +24,7 @@ describe('Given the class ReviewMongoRepository', () => {
     });
     test('Then, in getById()', async () => {
       const execMock = jest.fn().mockResolvedValueOnce([]);
-      ReviewModel.findById = jest.fn().mockReturnValueOnce({
+      CourtModel.findById = jest.fn().mockReturnValueOnce({
         exec: execMock,
       });
       const data = await repo.getById('');
@@ -32,39 +33,39 @@ describe('Given the class ReviewMongoRepository', () => {
     });
     test('Then, when getById() didnt found the user', async () => {
       const execMock = jest.fn().mockResolvedValueOnce(null);
-      ReviewModel.findById = jest.fn().mockReturnValueOnce({
+      CourtModel.findById = jest.fn().mockReturnValueOnce({
         exec: execMock,
       });
       expect(repo.getById('')).rejects.toThrow();
     });
     test('Then, when the method create() is called', async () => {
-      const mockUser = {
-        email: '',
-      } as unknown as Review;
-      ReviewModel.create = jest.fn().mockReturnValueOnce(mockUser);
-      const newUser = await repo.create(mockUser);
+      const mockCourt = {
+        surface: '',
+      } as unknown as Court;
+      CourtModel.create = jest.fn().mockReturnValueOnce(mockCourt);
+      const newCourt = await repo.create(mockCourt);
 
-      expect(newUser).toEqual(mockUser);
+      expect(newCourt).toEqual(mockCourt);
     });
     test('Then, when the method update() is called', async () => {
       const mockExec = jest.fn().mockResolvedValueOnce([]);
-      ReviewModel.findByIdAndUpdate = jest.fn().mockReturnValueOnce({
+      CourtModel.findByIdAndUpdate = jest.fn().mockReturnValueOnce({
         exec: mockExec,
       });
-      const updatedUser = await repo.update('', {});
+      const updatedCourt = await repo.update('', {});
       expect(mockExec).toHaveBeenCalled();
-      expect(updatedUser).toEqual([]);
+      expect(updatedCourt).toEqual([]);
     });
     test('Then, when the method update() didnt found the user', () => {
       const execMock = jest.fn().mockResolvedValueOnce(null);
-      ReviewModel.findByIdAndUpdate = jest.fn().mockReturnValueOnce({
+      CourtModel.findByIdAndUpdate = jest.fn().mockReturnValueOnce({
         exec: execMock,
       });
       expect(repo.update('', {})).rejects.toThrow();
     });
     test('Then, when the method delete() is called', async () => {
       const mockExec = jest.fn().mockReturnValueOnce({});
-      ReviewModel.findByIdAndDelete = jest.fn().mockReturnValueOnce({
+      CourtModel.findByIdAndDelete = jest.fn().mockReturnValueOnce({
         exec: mockExec,
       });
       const result = await repo.delete('');
@@ -72,14 +73,14 @@ describe('Given the class ReviewMongoRepository', () => {
     });
     test('Then, when the method delete didnt find an user', () => {
       const execMock = jest.fn().mockReturnValueOnce(null);
-      ReviewModel.findByIdAndDelete = jest.fn().mockReturnValueOnce({
+      CourtModel.findByIdAndDelete = jest.fn().mockReturnValueOnce({
         exec: execMock,
       });
       expect(repo.delete('')).rejects.toThrow();
     });
     test('Then, when the method search() is called', async () => {
       const mockExec = jest.fn().mockResolvedValueOnce([{}]);
-      ReviewModel.find = jest.fn().mockReturnValueOnce({
+      CourtModel.find = jest.fn().mockReturnValueOnce({
         exec: mockExec,
       });
       const key = 'userName';

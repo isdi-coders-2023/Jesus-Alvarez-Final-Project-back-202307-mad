@@ -1,9 +1,9 @@
 import cors from 'cors';
 import express, { Request, Response } from 'express';
 import morgan from 'morgan';
-import { courtRouter } from './router/court.router.js';
-import { reviewRouter } from './router/review.router.js';
-import { userRouter } from './router/user.router.js';
+import { courtRouter } from './router/court-router.js';
+import { reviewRouter } from './router/review-router.js';
+import { userRouter } from './router/user-router.js';
 
 export const app = express();
 

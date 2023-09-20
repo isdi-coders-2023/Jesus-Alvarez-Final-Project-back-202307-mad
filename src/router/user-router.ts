@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { Router as createRouter } from 'express';
-import { UserController } from '../controller/user.controller.js';
-import { FilesInterceptor } from '../middleware/files.interceptor.js';
-import { UserMongoRepository } from '../repository/user.mongo.repository.js';
+import { UserController } from '../controller/user-controller.js';
+import { FilesInterceptor } from '../middleware/files-interceptor.js';
+import { UserMongoRepository } from '../repository/user-mongo-repository.js';
 const debug = createDebug('PF11:Router: UserRouter');
 debug('Loaded');
 

@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { Router as createRouter } from 'express';
 import { CourtController } from '../controller/court.controller.js';
-import { FilesInterceptor } from '../middleware/files.interceptor.js';
-import { CourtMongoRepository } from '../repository/court.mongo.repository.js';
+import { FilesInterceptor } from '../middleware/files-interceptor.js';
+import { CourtMongoRepository } from '../repository/court-mongo-repository.js';
 
 const debug = createDebug('PF11:Router: UserRouter');
 
@@ -22,4 +22,5 @@ courtRouter.post(
   }
 );
 courtRouter.get('/', courtController.getAll.bind(courtController));
+// CourtRouter.get('/:id', courtController.getById.bind(courtController));
 courtRouter.delete('/:id', courtController.delete.bind(courtController));

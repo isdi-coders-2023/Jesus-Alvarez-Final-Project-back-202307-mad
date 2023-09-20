@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import cloudinaryBase from 'cloudinary';
 import createDebug from 'debug';
-import { CloudinaryError, HttpError } from '../types/http.error.js';
+import { CloudinaryError, HttpError } from '../types/http-error.js';
 import { ImageData } from '../types/image.js';
 
 const debug = createDebug('PF11:Services:MediaFiles');

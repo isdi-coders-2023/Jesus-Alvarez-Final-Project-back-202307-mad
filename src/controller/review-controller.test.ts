@@ -1,49 +1,27 @@
 import { Request, Response } from 'express';
-import { ReviewMongoRepository } from '../repository/review.mongo.repository';
-
-import { CloudinaryService } from '../services/media.files';
-
 import { ReviewNoId } from '../entities/review';
-import { CourtMongoRepository } from '../repository/court.mongo.repository';
-import { UserMongoRepository } from '../repository/user.mongo.repository';
-import { ReviewController } from './review.controller';
+import { CourtMongoRepository } from '../repository/court-mongo-repository';
+import { ReviewMongoRepository } from '../repository/review-mongo-repository';
+import { UserMongoRepository } from '../repository/user-mongo-repository';
+import { CloudinaryService } from '../services/media-files';
+import { ReviewController } from './review-controller';
+
+jest.mock('../repository/court.mongo.repository');
+jest.mock('../repository/user.mongo.repository');
+jest.mock('../repository/review.mongo.repository');
 
 describe('Given the class ReviewController', () => {
   describe('When it is instantiated', () => {
     const userMockRepo = new UserMongoRepository();
-    const MockRepo = new CourtMongoRepository();
+    const courtMockRepo = new CourtMongoRepository();
+
+    const mockRepo: ReviewMongoRepository = {
+      create: jest.fn().mockResolvedValue({}),
+    } as unknown as ReviewMongoRepository;
+
+    const reviewController = new ReviewController(mockRepo);
 
     test('Then, when we use create()', async () => {
-      const mockRepo: ReviewMongoRepository = {
-        create: jest.fn(),
-      } as unknown as ReviewMongoRepository;
-
-      // UserMockRepo: UserMongoRepository = {
-      //   getById: jest
-      //     .fn()
-      //     .mockResolvedValueOnce({ id: '1' } as unknown as User),
-      //   update: jest.fn().mockResolvedValueOnce({ id: '1' } as unknown as User),
-      // } as unknown as UserMongoRepository;
-
-      // courtMockRepo: CourtMongoRepository = {
-      //   getById: jest
-      //     .fn()
-      //     .mockResolvedValueOnce({ id: '1' } as unknown as Court),
-      //   update: jest
-      //     .fn()
-      //     .mockResolvedValueOnce({ id: '1' } as unknown as Court),
-      // } as unknown as CourtMongoRepository;
-
-      const reviewController = new ReviewController(mockRepo);
-
-      const mockReview = {
-        description: '',
-        id: '1',
-        userId: '',
-        courtId: '',
-      } as unknown as ReviewNoId;
-      (mockRepo.create as jest.Mock).mockResolvedValueOnce(mockReview);
-
       const mockRequest = {
         body: {
           userId: '',
@@ -59,13 +37,22 @@ describe('Given the class ReviewController', () => {
 
       const mockNext = jest.fn();
 
+      userMockRepo.getById = jest.fn().mockResolvedValue({});
+      courtMockRepo.getById = jest.fn().mockResolvedValue({});
       CloudinaryService.prototype.uploadImage = jest
         .fn()
         .mockResolvedValue(mockRequest.body.image);
-      mockRepo.create = jest.fn().mockResolvedValueOnce({ id: '' });
+
+      const mockReview = {
+        description: '',
+        id: '1',
+        userId: '',
+        courtId: '',
+      } as unknown as ReviewNoId;
+
+      (mockRepo.create as jest.Mock).mockResolvedValueOnce(mockReview);
+
       await reviewController.create(mockRequest, mockResponse, mockNext);
-      // Await userMockRepo.getById('');
-      // await courtMockRepo.getById('');
 
       expect(mockRepo.create).toHaveBeenCalled();
 

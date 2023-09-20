@@ -2,8 +2,8 @@ import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { Court } from '../entities/court.js';
 import { Repository } from '../repository/repository.js';
-import { CloudinaryService } from '../services/media.files.js';
-import { HttpError } from '../types/http.error.js';
+import { CloudinaryService } from '../services/media-files.js';
+import { HttpError } from '../types/http-error.js';
 import { Controller } from './controller.js';
 
 const debug = createDebug('PF11:Controller: CourtController');
