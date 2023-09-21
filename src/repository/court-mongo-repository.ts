@@ -12,7 +12,12 @@ export class CourtMongoRepository implements Repository<Court> {
   }
 
   async getAll(): Promise<Court[]> {
-    const data = await CourtModel.find().exec();
+    const data = await CourtModel.find()
+      .populate({
+        path: 'reviews',
+        populate: { path: 'userId' },
+      })
+      .exec();
     return data;
   }
 
