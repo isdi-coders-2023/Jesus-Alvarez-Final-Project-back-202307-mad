@@ -2,7 +2,7 @@ import { Review } from '../entities/review';
 import { ReviewModel } from './review-mongo-model';
 import { ReviewMongoRepository } from './review-mongo-repository';
 
-jest.mock('./review.mongo.model');
+jest.mock('./review-mongo-model');
 
 describe('Given the class ReviewMongoRepository', () => {
   let repo: ReviewMongoRepository;

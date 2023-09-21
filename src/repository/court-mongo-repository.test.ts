@@ -3,7 +3,7 @@ import { Court } from '../entities/court';
 import { CourtMongoRepository } from './court-mongo-repository';
 import { CourtModel } from './court-mongo.model';
 
-jest.mock('./court.mongo.model');
+jest.mock('./court-mongo-model');
 
 describe('Given the class CourtMongoRepository', () => {
   let repo: CourtMongoRepository;

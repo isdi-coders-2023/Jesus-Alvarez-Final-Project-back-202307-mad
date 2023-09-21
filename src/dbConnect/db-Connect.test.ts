@@ -3,7 +3,7 @@ describe('Given the function dbConnect', () => {
     connect: jest.fn(),
   }));
   const mongoose = require('mongoose');
-  const { dbConnect } = require('./dbConnect.ts');
+  const { dbConnect } = require('./db-Connect.ts');
   describe('When it is called', () => {
     process.env.DB_USER = 'testUser';
     process.env.DB_PASSWORD = 'testPassword';

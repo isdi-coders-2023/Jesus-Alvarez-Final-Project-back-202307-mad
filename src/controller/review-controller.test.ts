@@ -6,9 +6,9 @@ import { UserMongoRepository } from '../repository/user-mongo-repository';
 import { CloudinaryService } from '../services/media-files';
 import { ReviewController } from './review-controller';
 
-jest.mock('../repository/court.mongo.repository');
-jest.mock('../repository/user.mongo.repository');
-jest.mock('../repository/review.mongo.repository');
+jest.mock('../repository/court-mongo-repository');
+jest.mock('../repository/user-mongo-repository');
+jest.mock('../repository/review-mongo-repository');
 
 describe('Given the class ReviewController', () => {
   describe('When it is instantiated', () => {
