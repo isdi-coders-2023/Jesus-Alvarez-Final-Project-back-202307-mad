@@ -1,7 +1,7 @@
 import { Court } from '../entities/court';
 
+import { CourtModel } from './court-mongo-model';
 import { CourtMongoRepository } from './court-mongo-repository';
-import { CourtModel } from './court-mongo.model';
 
 jest.mock('./court-mongo-model');
 
