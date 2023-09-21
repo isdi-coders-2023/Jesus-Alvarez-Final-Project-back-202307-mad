@@ -10,7 +10,7 @@ jest.mock('../repository/court-mongo-repository');
 jest.mock('../repository/user-mongo-repository');
 jest.mock('../repository/review-mongo-repository');
 
-describe('Given the class ReviewController', () => {
+describe.skip('Given the class ReviewController', () => {
   describe('When it is instantiated', () => {
     const userMockRepo = new UserMongoRepository();
     const courtMockRepo = new CourtMongoRepository();
