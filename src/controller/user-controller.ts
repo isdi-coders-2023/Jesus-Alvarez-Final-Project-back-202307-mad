@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import { User, UserLoginData } from '../entities/user';
 import { Repository } from '../repository/repository.js';
 import { Auth } from '../services/auth.js';
-import { CloudinaryService } from '../services/media.files.js';
-import { HttpError } from '../types/http.error.js';
+import { CloudinaryService } from '../services/media-files.js';
+import { HttpError } from '../types/http-error.js';
 import { TokenPayload } from '../types/token.js';
 import { Controller } from './controller.js';
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Auth } from '../services/auth';
-import { HttpError } from '../types/http.error';
+import { HttpError } from '../types/http-error';
 
 export class AuthInterceptor {
   authoritzation = (req: Request, _res: Response, next: NextFunction) => {

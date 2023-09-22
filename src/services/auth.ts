@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { HttpError } from '../types/http.error.js';
+import { HttpError } from '../types/http-error.js';
 import { TokenPayload } from '../types/token.js';
 
 export class Auth {

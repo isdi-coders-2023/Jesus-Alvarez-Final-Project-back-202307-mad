@@ -2,7 +2,7 @@ import createDebug from 'debug';
 import 'dotenv/config';
 import { createServer } from 'http';
 import { app } from './app.js';
-import { dbConnect } from './dbConnect/dbConnect.js';
+import { dbConnect } from './dbConnect/db-Connect.js';
 
 const PORT = process.env.PORT ?? 3000;
 const debug = createDebug('PF11:Index');

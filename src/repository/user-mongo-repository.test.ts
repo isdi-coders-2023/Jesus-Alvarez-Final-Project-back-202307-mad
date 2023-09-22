@@ -1,8 +1,8 @@
 import { User } from '../entities/user';
-import { UserModel } from './user.mongo.model';
-import { UserMongoRepository } from './user.mongo.repository';
+import { UserModel } from './user-mongo-model';
+import { UserMongoRepository } from './user-mongo-repository';
 
-jest.mock('./user.mongo.model');
+jest.mock('./user-mongo-model');
 
 describe('Given the class UserMongoRepository', () => {
   let repo: UserMongoRepository;

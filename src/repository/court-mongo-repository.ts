@@ -1,7 +1,7 @@
 import createDebug from 'debug';
 import { Court } from '../entities/court.js';
-import { HttpError } from '../types/http.error.js';
-import { CourtModel } from './court.mongo.model.js';
+import { HttpError } from '../types/http-error.js';
+import { CourtModel } from './court-mongo-model.js';
 import { Repository } from './repository.js';
 
 const debug = createDebug('PF11:RepoCourtMongoRepository');
@@ -12,7 +12,12 @@ export class CourtMongoRepository implements Repository<Court> {
   }
 
   async getAll(): Promise<Court[]> {
-    const data = await CourtModel.find().exec();
+    const data = await CourtModel.find()
+      .populate({
+        path: 'reviews',
+        populate: { path: 'userId' },
+      })
+      .exec();
     return data;
   }
 

@@ -1,7 +1,7 @@
 /* eslint-disable max-nested-callbacks */
 import { Request, Response } from 'express';
 import multer from 'multer';
-import { FilesInterceptor } from './files.interceptor';
+import { FilesInterceptor } from './files-interceptor';
 
 jest.mock('multer');
 

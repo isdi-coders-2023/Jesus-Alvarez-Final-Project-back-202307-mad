@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import { User } from '../entities/user.js';
-import { HttpError } from '../types/http.error.js';
+import { HttpError } from '../types/http-error.js';
 import { Repository } from './repository.js';
-import { UserModel } from './user.mongo.model.js';
+import { UserModel } from './user-mongo-model.js';
 
 const debug = createDebug('PF11:RepoUserMongoRepository');
 
@@ -43,6 +43,7 @@ export class UserMongoRepository implements Repository<User> {
   }
 
   async delete(id: string): Promise<void> {
+    debug(id);
     const deletedUser = await UserModel.findByIdAndDelete(id).exec();
 
     if (!deletedUser)

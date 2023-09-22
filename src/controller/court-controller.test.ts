@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { CourtMongoRepository } from '../repository/court.mongo.repository';
+import { CourtMongoRepository } from '../repository/court-mongo-repository';
 
-import { CloudinaryService } from '../services/media.files';
+import { CloudinaryService } from '../services/media-files';
 import { CourtController } from './court.controller';
 
 describe('Given the class CourtController', () => {

@@ -1,6 +1,6 @@
 import cloudinaryBase from 'cloudinary';
 import { ImageData } from '../types/image.js';
-import { CloudinaryService } from './media.files';
+import { CloudinaryService } from './media-files.js';
 
 jest.mock('cloudinary');
 

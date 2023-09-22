@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Auth } from '../services/auth';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './auth-interceptor';
 
 describe('Given the class AuthInterceptor', () => {
   const authInterceptor = new AuthInterceptor();

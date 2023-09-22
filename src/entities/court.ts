@@ -1,10 +1,12 @@
 import { ImageData } from '../types/image';
+import { Review } from './review';
 
 export type CourtNoId = {
+  name: string;
   surface: string;
   location: string;
   pictures: ImageData;
-  reviews: string[];
+  reviews: Review[];
 };
 
 export type CourtId = {

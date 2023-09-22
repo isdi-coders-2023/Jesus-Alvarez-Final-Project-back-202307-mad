@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import cloudinaryBase from 'cloudinary';
 import createDebug from 'debug';
-import { CloudinaryError, HttpError } from '../types/http.error.js';
+import { CloudinaryError, HttpError } from '../types/http-error.js';
 import { ImageData } from '../types/image.js';
 
 const debug = createDebug('PF11:Services:MediaFiles');
@@ -26,7 +26,6 @@ export class CloudinaryService {
 
     try {
       const result = await this.cloudinary.uploader.upload(imagePath, options);
-      debug('Hola', result);
       const imageData: ImageData = {
         id: result.public_id,
         width: result.width,
