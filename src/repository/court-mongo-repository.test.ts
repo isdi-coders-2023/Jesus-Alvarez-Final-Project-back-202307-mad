@@ -20,7 +20,7 @@ describe('Given the class CourtMongoRepository', () => {
         }),
       });
       const result = await repo.getAll();
-      // Expect(mockExec).toHaveBeenCalled();
+      expect(mockExec).toHaveBeenCalled();
       expect(result).toEqual([]);
     });
     test('Then, in getById()', async () => {

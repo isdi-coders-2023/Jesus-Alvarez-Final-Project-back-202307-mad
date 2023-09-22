@@ -31,7 +31,9 @@ export class ReviewController extends Controller<Review> {
       const userRepo = new UserMongoRepository();
       const courtRepo = new CourtMongoRepository();
       const user = await userRepo.getById(req.body.userId);
+
       const court = await courtRepo.getById(req.body.courtId);
+
       const finalPath = req.file.destination + '/' + req.file!.filename;
       const image = await this.cloudinary.uploadImage(finalPath);
       req.body.image = image;
