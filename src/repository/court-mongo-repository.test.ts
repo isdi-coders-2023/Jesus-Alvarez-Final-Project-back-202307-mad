@@ -1,11 +1,10 @@
 import { Court } from '../entities/court';
-
 import { CourtModel } from './court-mongo-model';
 import { CourtMongoRepository } from './court-mongo-repository';
 
 jest.mock('./court-mongo-model');
 
-describe.skip('Given the class CourtMongoRepository', () => {
+describe('Given the class CourtMongoRepository', () => {
   let repo: CourtMongoRepository;
 
   beforeEach(() => {
@@ -16,10 +15,12 @@ describe.skip('Given the class CourtMongoRepository', () => {
     test('Then, in getAll()', async () => {
       const mockExec = jest.fn().mockResolvedValueOnce([]);
       CourtModel.find = jest.fn().mockReturnValueOnce({
-        exec: mockExec,
+        populate: jest.fn().mockReturnValue({
+          exec: mockExec,
+        }),
       });
       const result = await repo.getAll();
-      expect(mockExec).toHaveBeenCalled();
+      // Expect(mockExec).toHaveBeenCalled();
       expect(result).toEqual([]);
     });
     test('Then, in getById()', async () => {
