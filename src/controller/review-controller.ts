@@ -54,7 +54,7 @@ export class ReviewController extends Controller<Review> {
     try {
       const review = await this.repo.getById(req.params.id);
 
-      const userid = String(review.userId);
+      const userid = review.userId.id;
       const userRepo = new UserMongoRepository();
       const user = await userRepo.getById(userid);
       const newUserArray = user.reviews.filter(
@@ -62,7 +62,7 @@ export class ReviewController extends Controller<Review> {
       );
       user.reviews = newUserArray;
 
-      const courtid = String(review.courtId);
+      const courtid = review.courtId.id;
       const courtRepo = new CourtMongoRepository();
 
       const court = await courtRepo.getById(courtid);
