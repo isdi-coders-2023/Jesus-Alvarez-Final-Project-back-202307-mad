@@ -86,4 +86,19 @@ export class ReviewController extends Controller<Review> {
       next(error);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const finalPath = req.file!.destination + '/' + req.file!.filename;
+      const image = await this.cloudinary.uploadImage(finalPath);
+      req.body.image = image;
+      console.log(req.params.id);
+      console.log(req.body);
+      const updatedReview = await this.repo.update(req.params.id, req.body);
+      res.status(200);
+      res.json(updatedReview);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
