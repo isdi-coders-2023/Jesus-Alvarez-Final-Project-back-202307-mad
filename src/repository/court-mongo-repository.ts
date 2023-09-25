@@ -35,7 +35,7 @@ export class CourtMongoRepository implements Repository<Court> {
     return newCourt;
   }
 
-  async update(id: string, newData: FormData): Promise<Court> {
+  async update(id: string, newData: Partial<Court>): Promise<Court> {
     const updatedCourt = await CourtModel.findByIdAndUpdate(id, newData, {
       new: true,
     }).exec();

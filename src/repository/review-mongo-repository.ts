@@ -12,9 +12,11 @@ export class ReviewMongoRepository implements Repository<Review> {
   }
 
   async getAll(): Promise<Review[]> {
-    const data = await ReviewModel.find().populate({
-      path: 'userId',
-    });
+    const data = await ReviewModel.find()
+      .populate({
+        path: 'userId',
+      })
+      .exec();
     return data;
   }
 
@@ -38,7 +40,7 @@ export class ReviewMongoRepository implements Repository<Review> {
     return newReview;
   }
 
-  async update(id: string, newData: Partial<FormData>): Promise<Review> {
+  async update(id: string, newData: Partial<Review>): Promise<Review> {
     const updatedReview = await ReviewModel.findByIdAndUpdate(id, newData, {
       new: true,
     }).exec();
