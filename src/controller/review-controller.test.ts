@@ -29,6 +29,7 @@ describe('Given the class ReviewController', () => {
 
     const mockRepo: ReviewMongoRepository = {
       create: jest.fn().mockResolvedValue(mockReview),
+      getById: jest.fn().mockResolvedValue({}),
     } as unknown as ReviewMongoRepository;
 
     const reviewController = new ReviewController(mockRepo);

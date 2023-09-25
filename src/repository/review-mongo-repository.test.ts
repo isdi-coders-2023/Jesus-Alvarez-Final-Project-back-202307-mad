@@ -26,16 +26,16 @@ describe('Given the class ReviewMongoRepository', () => {
     test('Then, in getById()', async () => {
       const execMock = jest.fn().mockResolvedValueOnce([]);
       ReviewModel.findById = jest.fn().mockReturnValueOnce({
-        exec: execMock,
+        populate: jest.fn().mockReturnValue({ exec: execMock }),
       });
       const data = await repo.getById('');
       expect(execMock).toHaveBeenCalled();
       expect(data).toEqual([]);
     });
-    test('Then, when getById() didnt found the user', async () => {
+    test('Then, when getById() didnt find the user', async () => {
       const execMock = jest.fn().mockResolvedValueOnce(null);
       ReviewModel.findById = jest.fn().mockReturnValueOnce({
-        exec: execMock,
+        populate: jest.fn().mockReturnValue({ exec: execMock }),
       });
       expect(repo.getById('')).rejects.toThrow();
     });

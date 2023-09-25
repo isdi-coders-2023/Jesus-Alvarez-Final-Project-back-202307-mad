@@ -31,7 +31,7 @@ export class ReviewController extends Controller<Review> {
       const userRepo = new UserMongoRepository();
       const courtRepo = new CourtMongoRepository();
 
-      const user = await userRepo.getById(req.body.userId.id);
+      const user = await userRepo.getById(req.body.userId);
 
       const court = await courtRepo.getById(req.body.courtId);
 
