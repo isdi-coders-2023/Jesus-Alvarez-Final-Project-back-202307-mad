@@ -21,7 +21,11 @@ export class ReviewMongoRepository implements Repository<Review> {
   }
 
   async getById(id: string): Promise<Review> {
-    const data = await ReviewModel.findById(id).exec();
+    const data = await ReviewModel.findById(id)
+      .populate({
+        path: 'userId',
+      })
+      .exec();
     if (!data)
       throw new HttpError(
         404,
