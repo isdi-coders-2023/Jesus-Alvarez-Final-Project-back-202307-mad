@@ -56,7 +56,8 @@ export class ReviewController extends Controller<Review> {
     try {
       const review = await this.repo.getById(req.params.id);
 
-      const userid = review.userId.id;
+      const userid = String(review.userId);
+
       const userRepo = new UserMongoRepository();
       const user = await userRepo.getById(userid);
       const newUserArray = user.reviews.filter(
@@ -64,7 +65,7 @@ export class ReviewController extends Controller<Review> {
       );
       user.reviews = newUserArray;
 
-      const courtid = review.courtId.id;
+      const courtid = String(review.courtId);
       const courtRepo = new CourtMongoRepository();
 
       const court = await courtRepo.getById(courtid);
@@ -81,6 +82,20 @@ export class ReviewController extends Controller<Review> {
       courtRepo.update(court.id, court);
       res.status(204);
       res.json({});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const finalPath = req.file!.destination + '/' + req.file!.filename;
+      const image = await this.cloudinary.uploadImage(finalPath);
+      req.body.image = image;
+
+      const updatedReview = await this.repo.update(req.params.id, req.body);
+      res.status(200);
+      res.json(updatedReview);
     } catch (error) {
       next(error);
     }

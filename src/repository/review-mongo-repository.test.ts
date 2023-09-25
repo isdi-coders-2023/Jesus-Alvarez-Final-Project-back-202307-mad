@@ -15,7 +15,9 @@ describe('Given the class ReviewMongoRepository', () => {
     test('Then, in getAll()', async () => {
       const mockExec = jest.fn().mockResolvedValueOnce([]);
       ReviewModel.find = jest.fn().mockReturnValueOnce({
-        exec: mockExec,
+        populate: jest.fn().mockReturnValue({
+          exec: mockExec,
+        }),
       });
       const result = await repo.getAll();
       expect(mockExec).toHaveBeenCalled();

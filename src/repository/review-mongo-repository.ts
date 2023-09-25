@@ -12,7 +12,11 @@ export class ReviewMongoRepository implements Repository<Review> {
   }
 
   async getAll(): Promise<Review[]> {
-    const data = await ReviewModel.find().exec();
+    const data = await ReviewModel.find()
+      .populate({
+        path: 'userId',
+      })
+      .exec();
     return data;
   }
 

@@ -119,3 +119,44 @@ describe('Given the class ReviewController', () => {
     });
   });
 });
+
+describe('Given the class ReviewController', () => {
+  describe('When it is instantiated', () => {
+    const mockReview = {} as unknown as Review;
+    const mockRepo: ReviewMongoRepository = {
+      update: jest.fn().mockResolvedValue(mockReview),
+    } as unknown as ReviewMongoRepository;
+    const reviewController = new ReviewController(mockRepo);
+    test('When we call the method update()', async () => {
+      const mockRequest = {
+        body: { image: {} },
+        file: '',
+        params: '',
+      } as unknown as Request;
+      const mockResponse = {
+        json: jest.fn().mockResolvedValue(mockReview),
+        status: jest.fn().mockResolvedValue(200),
+      } as unknown as Response;
+      const mockNext = jest.fn();
+      CloudinaryService.prototype.uploadImage = jest
+        .fn()
+        .mockResolvedValue(mockRequest.body.image);
+      await reviewController.update(mockRequest, mockResponse, mockNext);
+      expect(mockResponse.json).toHaveBeenCalled();
+    });
+    test('When we call it and theres an error', async () => {
+      const mockRequest = {
+        body: { image: {} },
+
+        params: '',
+      } as unknown as Request;
+      const mockResponse = {
+        json: jest.fn().mockResolvedValue(mockReview),
+        status: jest.fn().mockResolvedValue(200),
+      } as unknown as Response;
+      const mockNext = jest.fn();
+      await reviewController.update(mockRequest, mockResponse, mockNext);
+      expect(mockNext).toHaveBeenCalled();
+    });
+  });
+});
