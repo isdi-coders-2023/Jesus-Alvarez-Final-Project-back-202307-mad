@@ -22,5 +22,5 @@ courtRouter.post(
   }
 );
 courtRouter.get('/', courtController.getAll.bind(courtController));
-
+courtRouter.get('/:id', courtController.getById.bind(courtController));
 courtRouter.delete('/:id', courtController.delete.bind(courtController));

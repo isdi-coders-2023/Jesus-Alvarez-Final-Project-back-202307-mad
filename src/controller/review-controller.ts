@@ -30,6 +30,7 @@ export class ReviewController extends Controller<Review> {
 
       const userRepo = new UserMongoRepository();
       const courtRepo = new CourtMongoRepository();
+
       const user = await userRepo.getById(req.body.userId);
 
       const court = await courtRepo.getById(req.body.courtId);
@@ -45,8 +46,10 @@ export class ReviewController extends Controller<Review> {
 
       userRepo.update(user.id, user);
       courtRepo.update(court.id, court);
+      const finalReview2 = await this.repo.getById(finalReview.id);
+
       res.status(201);
-      res.json(finalReview);
+      res.json(finalReview2);
     } catch (error) {
       next(error);
     }
@@ -55,8 +58,8 @@ export class ReviewController extends Controller<Review> {
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const review = await this.repo.getById(req.params.id);
-
-      const userid = String(review.userId);
+      debug('HOLA', review);
+      const userid = String(review.userId.id);
 
       const userRepo = new UserMongoRepository();
       const user = await userRepo.getById(userid);
